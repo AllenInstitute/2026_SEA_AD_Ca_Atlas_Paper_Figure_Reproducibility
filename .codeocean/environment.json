@@ -1,0 +1,76 @@
+{
+	"version": 1,
+	"base_image": "codeocean/pytorch:2.4.0-cuda12.4.0-mambaforge24.5.0-0-python3.12.4-ubuntu22.04",
+	"options": {
+		"registry_host_arg": true,
+		"git_ask_pass": true,
+		"mount_secrets": true
+	},
+	"installers": {
+		"conda": {
+			"packages": [
+				{
+					"name": "jupyterlab",
+					"version": "4.5.1"
+				}
+			]
+		},
+		"mamba": {
+			"packages": [
+				{
+					"name": "cudnn",
+					"version": "9.3.0.75"
+				},
+				{
+					"name": "cusparselt",
+					"version": "0.6.3.2"
+				},
+				{
+					"name": "cutensor",
+					"version": "2.0.2.5"
+				},
+				{
+					"name": "leidenalg",
+					"version": "0.10.2"
+				},
+				{
+					"name": "louvain",
+					"version": "0.8.2"
+				},
+				{
+					"name": "pymde",
+					"version": "0.1.18"
+				},
+				{
+					"name": "rapidsai::rapids"
+				},
+				{
+					"name": "scipy",
+					"version": "1.14.1"
+				}
+			]
+		},
+		"pip": {
+			"packages": [
+				{
+					"name": "rapids-singlecell",
+					"version": "0.13.5"
+				},
+				{
+					"name": "scanpy",
+					"version": "1.10.4"
+				},
+				{
+					"name": "sopa",
+					"version": "2.1.10"
+				},
+				{
+					"name": "spatialdata-plot",
+					"version": "0.2.13"
+				}
+			],
+			"options": {},
+			"pre_install_options": {}
+		}
+	}
+}

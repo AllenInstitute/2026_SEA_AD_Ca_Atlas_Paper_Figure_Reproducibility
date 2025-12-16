@@ -1,0 +1,29 @@
+{
+	"version": 1,
+	"attached_datasets": [
+		{
+			"id": "06e6879a-cf92-4990-9c52-bc2d63c051e8",
+			"mount": "sdata_ptau_1"
+		},
+		{
+			"id": "92d227bd-639f-4f4b-bc96-c23e9f522d55",
+			"mount": "spatial_adata"
+		},
+		{
+			"id": "a584aa0a-869d-4bf1-aaa1-57441e89fcfd",
+			"mount": "sdata_ptau_2"
+		},
+		{
+			"id": "b89c0fee-af8a-4842-ba21-e6b721b8c859",
+			"mount": "1417648792_sdata"
+		},
+		{
+			"id": "c963bed5-4d3a-405c-974c-1e4ba5ca1c1d",
+			"mount": "iterative_scanvi_results"
+		},
+		{
+			"id": "d652c50c-5f96-4822-8983-c8fc70ad0b02",
+			"mount": "Multiregion"
+		}
+	]
+}
