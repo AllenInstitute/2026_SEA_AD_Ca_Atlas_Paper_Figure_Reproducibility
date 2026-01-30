@@ -18,3 +18,12 @@ def get_shape_transform(sdata, elem):
 def read_obs(path):
     with File(path) as f:
         return read_elem(f['obs'])
+
+
+def latexify_xlabel(x):
+    a = x.split("_")
+    if len(a) > 1:
+        a, b = a
+        return f'${a}_{{{b}}}$'
+    else:
+        return f'${a[0]}$'

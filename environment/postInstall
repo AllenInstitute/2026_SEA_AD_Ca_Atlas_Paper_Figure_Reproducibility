@@ -1,0 +1,55 @@
+!/usr/bin/env bash
+set -e
+
+# ----- INSTALL UPDATED VS CODE ----- #
+# install updated version of code-server
+VERSION=4.100.3
+rm -rf /.code-server
+mkdir /.code-server
+cd /.code-server
+curl -fL "https://github.com/coder/code-server/releases/download/v$VERSION/code-server-$VERSION-linux-amd64.tar.gz" \
+  | tar -xvz
+rm -r /usr/bin/code-server
+ln -s /.code-server/code-server-$VERSION-linux-amd64/bin/code-server  /usr/bin/code-server
+cd -
+
+# ----- INSTALL EXTENSIONS ----- #
+CODE_EXTENSIONS_DIR=/.vscode/extensions
+if [ ! -d "$CODE_EXTENSIONS_DIR" ]
+    then
+       echo "Directory $CODE_EXTENSIONS_DIR DOES NOT exists."
+       mkdir -p $CODE_EXTENSIONS_DIR
+fi
+
+# ----- Github Copilot ----- #
+# GitHub Copilot extension - not available in the default open-vsx registry
+# won't work in postinstall if extensions folder has been moved to inside capsule filesystem!
+download_and_install_extension() {
+    publisher=$1
+    name=$2
+    version=$3
+    file=/tmp/$publisher.$name.$version.vsix
+    curl -fL http://${publisher}.gallery.vsassets.io/_apis/public/gallery/publisher/${publisher}/extension/${name}/${version}/assetbyname/Microsoft.VisualStudio.Services.VSIXPackage \
+        --output $file
+    code-server --disable-telemetry --extensions-dir=/.vscode/extensions --install-extension $file
+}
+# for 4.100
+download_and_install_extension github copilot 1.326.0
+download_and_install_extension github copilot-chat 0.27.3
+download_and_install_extension MS-vsliveshare vsliveshare 1.0.5900
+
+# ----- Other Extensions ----- #
+# Other extensions can be installed using the standard code-server command directly
+# Python, Jupyter
+code-server --disable-telemetry --extensions-dir $CODE_EXTENSIONS_DIR --install-extension ms-toolsai.jupyter
+code-server --disable-telemetry --extensions-dir $CODE_EXTENSIONS_DIR --install-extension ms-python.python
+# Git Graph extensions
+code-server --disable-telemetry --extensions-dir $CODE_EXTENSIONS_DIR --install-extension mhutchie.git-graph
+# BasedPyright:- open alternative to Microsoft's proprietary Pylance (better than Jedi intellisense)
+code-server --disable-telemetry --extensions-dir $CODE_EXTENSIONS_DIR --install-extension detachhead.basedpyright
+# Ruff: Python linter and code formatter, written in Rust for speed
+code-server --disable-telemetry --extensions-dir $CODE_EXTENSIONS_DIR --install-extension charliermarsh.ruff
+# # autodocstring extension
+# code-server --disable-telemetry --extensions-dir $CODE_EXTENSIONS_DIR --install-extension njpwerner.autodocstring
+
+# NB: No longer need to move the .vscode folder into the capsule (not compatible with GitHub Copilot download)

@@ -1,37 +1,38 @@
 {
 	"version": 1,
 	"base_image": "codeocean/pytorch:2.4.0-cuda12.4.0-mambaforge24.5.0-0-python3.12.4-ubuntu22.04",
+	"post_install": true,
 	"options": {
 		"registry_host_arg": true,
 		"git_ask_pass": true,
 		"mount_secrets": true
 	},
 	"installers": {
-		"conda": {
-			"packages": [
-				{
-					"name": "jupyterlab",
-					"version": "4.5.1"
-				}
-			]
-		},
 		"mamba": {
 			"packages": [
 				{
 					"name": "cudnn",
-					"version": "9.3.0.75"
+					"version": "9.10.2.21"
 				},
 				{
 					"name": "cusparselt",
-					"version": "0.6.3.2"
+					"version": "0.8.1.1"
 				},
 				{
 					"name": "cutensor",
-					"version": "2.0.2.5"
+					"version": "2.4.1.4"
+				},
+				{
+					"name": "jupyter",
+					"version": "1.1.1"
 				},
 				{
 					"name": "leidenalg",
 					"version": "0.10.2"
+				},
+				{
+					"name": "libsqlite",
+					"version": "3.51.2"
 				},
 				{
 					"name": "louvain",
@@ -46,23 +47,31 @@
 				},
 				{
 					"name": "scipy",
-					"version": "1.14.1"
+					"version": "1.17.0"
+				},
+				{
+					"name": "sqlite",
+					"version": "3.51.2"
 				}
 			]
 		},
 		"pip": {
 			"packages": [
 				{
+					"name": "igraph",
+					"version": "1.0.0"
+				},
+				{
 					"name": "rapids-singlecell",
 					"version": "0.13.5"
 				},
 				{
 					"name": "scanpy",
-					"version": "1.10.4"
+					"version": "1.12"
 				},
 				{
-					"name": "sopa",
-					"version": "2.1.10"
+					"name": "spatialdata",
+					"version": "0.6.1"
 				},
 				{
 					"name": "spatialdata-plot",
@@ -71,6 +80,9 @@
 			],
 			"options": {},
 			"pre_install_options": {}
+		},
+		"vscode": {
+			"version": "4.100.3"
 		}
 	}
 }

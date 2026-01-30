@@ -6,6 +6,14 @@
 			"mount": "sdata_ptau_1"
 		},
 		{
+			"id": "1ae2757c-5e07-4dbb-b369-aab937277b35",
+			"mount": "DEG_Supplemental_Tables"
+		},
+		{
+			"id": "84e7f5f3-8791-422d-b5f9-a4aecc590e9a",
+			"mount": "filtered_adata"
+		},
+		{
 			"id": "92d227bd-639f-4f4b-bc96-c23e9f522d55",
 			"mount": "spatial_adata"
 		},
@@ -24,6 +32,10 @@
 		{
 			"id": "d652c50c-5f96-4822-8983-c8fc70ad0b02",
 			"mount": "Multiregion"
+		},
+		{
+			"id": "e66ef45c-02bd-4efd-ae28-450ed1cf51c4",
+			"mount": "unfiltered_adata"
 		}
 	]
 }
