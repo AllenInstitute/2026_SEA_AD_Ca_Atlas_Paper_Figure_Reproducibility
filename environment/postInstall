@@ -37,6 +37,7 @@ download_and_install_extension() {
 download_and_install_extension github copilot 1.326.0
 download_and_install_extension github copilot-chat 0.27.3
 download_and_install_extension MS-vsliveshare vsliveshare 1.0.5900
+download_and_install_extension teabyii ayu 1.1.7
 
 # ----- Other Extensions ----- #
 # Other extensions can be installed using the standard code-server command directly

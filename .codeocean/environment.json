@@ -43,11 +43,12 @@
 					"version": "0.1.18"
 				},
 				{
-					"name": "rapidsai::rapids"
+					"name": "rapidsai::rapids",
+					"version": "25.08.00"
 				},
 				{
 					"name": "scipy",
-					"version": "1.17.0"
+					"version": "1.16.3"
 				},
 				{
 					"name": "sqlite",

@@ -10,6 +10,10 @@
 			"mount": "DEG_Supplemental_Tables"
 		},
 		{
+			"id": "422962d4-0898-4399-857f-cf2c23bdaea9",
+			"mount": "combined_adata"
+		},
+		{
 			"id": "84e7f5f3-8791-422d-b5f9-a4aecc590e9a",
 			"mount": "filtered_adata"
 		},
@@ -20,6 +24,10 @@
 		{
 			"id": "a584aa0a-869d-4bf1-aaa1-57441e89fcfd",
 			"mount": "sdata_ptau_2"
+		},
+		{
+			"id": "abb59e72-2516-4fd0-bfce-869108a8858e",
+			"mount": "spatialdata"
 		},
 		{
 			"id": "b89c0fee-af8a-4842-ba21-e6b721b8c859",

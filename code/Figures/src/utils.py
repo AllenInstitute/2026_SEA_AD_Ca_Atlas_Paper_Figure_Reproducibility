@@ -27,3 +27,85 @@ def latexify_xlabel(x):
         return f'${a}_{{{b}}}$'
     else:
         return f'${a[0]}$'
+
+
+def generate_grid(max_x, max_y, bin_size, min_x=0, min_y=0, crs=None):
+    """
+    Generate a regular grid of rectangular boxes.
+
+    Parameters
+    ----------
+    max_x, max_y : float
+        Maximum X and Y extent of the grid.
+    min_x, min_y : float, optional
+        Minimum coordinates (default 0,0).
+    bin_size : float
+        Size of each grid cell in coordinate units.
+    crs : any, optional
+        Coordinate reference system to assign to the resulting GeoDataFrame.
+
+    Returns
+    -------
+    grid_gdf : GeoDataFrame
+        Grid of rectangular boxes (each cell is a polygon).
+    """
+    
+    # Create the coordinate ranges
+    xs = np.arange(min_x, max_x, bin_size)
+    ys = np.arange(min_y, max_y, bin_size)
+
+    # Build the boxes
+    boxes = []
+    for x0 in xs:
+        for y0 in ys:
+            x1 = x0 + bin_size
+            y1 = y0 + bin_size
+            boxes.append(box(x0, y0, x1, y1))
+
+    # Wrap in GeoDataFrame
+    grid = gpd.GeoDataFrame({"geometry": boxes}, crs=crs)
+    
+    return grid
+
+
+def compute_polygon_overlap(polygons_gs, boxes_gdf):
+    """
+    Robustly compute the overlap area between grid boxes and polygons,
+    automatically fixing invalid geometries to avoid TopologyException.
+    """
+
+    # Convert to GDF
+    polygons = gpd.GeoDataFrame(geometry=polygons_gs, crs=boxes_gdf.crs).copy()
+    boxes = boxes_gdf.copy()
+
+    # 1. Fix invalid geometries (buffer(0) is the classic fix)
+    polygons["geometry"] = polygons.geometry.buffer(0)
+    boxes["geometry"]    = boxes.geometry.buffer(0)
+
+    # 2. Use spatial index to find intersecting pairs
+    sindex = polygons.sindex
+
+    intersections = []
+    box_idx_list = []
+
+    for box_idx, box in boxes.geometry.items():
+        # candidate polygons that might intersect the box
+        cand_idx = list(sindex.query(box, predicate="intersects"))
+
+        if not cand_idx:
+            intersections.append(0.0)
+            continue
+
+        # intersect only valid candidates
+        polys = polygons.geometry.iloc[cand_idx]
+        inter = polys.intersection(box)
+
+        # compute total intersection area for this box
+        area = inter.area.sum()
+        intersections.append(area)
+
+    # 3. Add result column
+    boxes["overlap_area"] = intersections
+    return boxes
+
+

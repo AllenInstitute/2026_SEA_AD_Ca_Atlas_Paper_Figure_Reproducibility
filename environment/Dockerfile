@@ -1,4 +1,4 @@
-# hash:sha256:077fe67842538f9c69696457033c92f01da0fa4b342a23c695bbeba70d25ccd9
+# hash:sha256:ba804dfe947ef8f4adb6f4ae2350f8bcf2c6a9b793cf6d065f6fb97b3b89e72a
 ARG REGISTRY_HOST
 FROM $REGISTRY_HOST/codeocean/pytorch:2.4.0-cuda12.4.0-mambaforge24.5.0-0-python3.12.4-ubuntu22.04
 
@@ -15,8 +15,8 @@ RUN mamba install -y \
         libsqlite==3.51.2 \
         louvain==0.8.2 \
         pymde==0.1.18 \
-        rapidsai::rapids \
-        scipy==1.17.0 \
+        rapidsai::rapids==25.08.00 \
+        scipy==1.16.3 \
         sqlite==3.51.2 \
     && mamba clean -ya
 
