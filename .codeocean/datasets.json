@@ -14,6 +14,10 @@
 			"mount": "combined_adata"
 		},
 		{
+			"id": "4dd075c3-6f8b-4dba-9654-a1179924e343",
+			"mount": "20251208_neighborhood_enrichment"
+		},
+		{
 			"id": "84e7f5f3-8791-422d-b5f9-a4aecc590e9a",
 			"mount": "filtered_adata"
 		},
