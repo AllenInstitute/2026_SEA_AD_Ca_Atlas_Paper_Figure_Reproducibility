@@ -18,6 +18,10 @@
 			"mount": "20251208_neighborhood_enrichment"
 		},
 		{
+			"id": "834b913d-7ee0-4039-8a52-faedbc1d8930",
+			"mount": "polygon_parquets"
+		},
+		{
 			"id": "84e7f5f3-8791-422d-b5f9-a4aecc590e9a",
 			"mount": "filtered_adata"
 		},
