@@ -1,6 +1,9 @@
 from h5py import File
 from anndata.io import read_elem
 from spatialdata import get_centroids
+import pandas as pd
+import numpy as np
+import geopandas as gpd
 
 def crop_cell(sdata, element_key, element_cell_index, bounding_box_size = 250, coordinate_system = 'global'):
     centroids_df = get_centroids(sdata[element_key]).compute()
@@ -108,4 +111,11 @@ def compute_polygon_overlap(polygons_gs, boxes_gdf):
     boxes["overlap_area"] = intersections
     return boxes
 
+
+def bin_distances(
+    distances: pd.Series | np.ndarray,
+    bin_size:  float | int,
+    ):
+    bins = np.arange(0, np.ceil(distances.max() / bin_size) * bin_size, bin_size)
+    return (np.digitize(distances, bins) - 1) * bin_size
 
