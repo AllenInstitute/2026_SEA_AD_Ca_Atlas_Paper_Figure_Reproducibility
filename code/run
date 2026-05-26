@@ -1,1 +1,1 @@
-echo hello
+python Data/preprocess_single_cell_adata.py
