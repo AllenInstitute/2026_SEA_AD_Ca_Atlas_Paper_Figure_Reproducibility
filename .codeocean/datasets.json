@@ -6,6 +6,10 @@
 			"mount": "sdata_ptau_1"
 		},
 		{
+			"id": "0b3b1136-0f9b-4f47-a9f8-7c5cad8a6899",
+			"mount": "SEAAD_CaH_Braak_Nebula_Results"
+		},
+		{
 			"id": "14169b9d-ecab-4346-aded-0be79e0249ea",
 			"mount": "polygon_parquets_1"
 		},
@@ -42,12 +46,40 @@
 			"mount": "spatial_adata"
 		},
 		{
+			"id": "93a816bc-b969-4dd8-a032-e6f660b4d366",
+			"mount": "20260716_edgeR_CPS_AT8_results"
+		},
+		{
+			"id": "947f9b04-2151-4363-a002-70c5792914bf",
+			"mount": "multiregion_adata"
+		},
+		{
 			"id": "a584aa0a-869d-4bf1-aaa1-57441e89fcfd",
 			"mount": "sdata_ptau_2"
 		},
 		{
+			"id": "ab334205-92e7-4ef1-a9f4-776b32c61716",
+			"mount": "HMBA_BG_AIT19_Atlases"
+		},
+		{
 			"id": "abb59e72-2516-4fd0-bfce-869108a8858e",
 			"mount": "spatialdata"
+		},
+		{
+			"id": "b00c5769-4a7f-4d72-aa99-b2ab0a0c70c3",
+			"mount": "seaad_differential_adata"
+		},
+		{
+			"id": "b0c18b2d-439a-49d0-84eb-59359c1ecbe3",
+			"mount": "SEAAD_CaH_Thal_Nebula_Results"
+		},
+		{
+			"id": "b50feea8-3d45-44bf-8be0-43f44e5a6f04",
+			"mount": "DFC_DFCmapping_full_260625"
+		},
+		{
+			"id": "b5c37fdd-6e8d-481c-9cb4-b64a1153355b",
+			"mount": "SEAAD_CaH_ADNC_Nebula_Results"
 		},
 		{
 			"id": "b89c0fee-af8a-4842-ba21-e6b721b8c859",

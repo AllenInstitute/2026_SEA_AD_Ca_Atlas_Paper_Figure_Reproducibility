@@ -1,7 +1,4 @@
 {
 	"version": 1,
-	"resource_class": "dedicated",
-	"machine_config": {
-		"instance_type": "gr6.8xlarge"
-	}
+	"resource_class": "xsmall"
 }

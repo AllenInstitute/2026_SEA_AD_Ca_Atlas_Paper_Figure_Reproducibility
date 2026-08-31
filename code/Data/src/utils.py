@@ -6,7 +6,7 @@ from matplotlib import pyplot as plt
 from scipy import stats as sp_stats
 import seaborn as sns
 from pathlib import Path
-
+import geopandas as gpd
 from h5py import File
 from anndata.io import read_elem
 
@@ -94,3 +94,14 @@ def plot_umaps_and_histograms(latent_adata,label_name, leiden_resolution = 1, hi
     for metric in qc_metrics:
         qc_series = latent_adata.obs.groupby("leiden")[metric].mean()
         sns.displot(qc_series, bins = hist_bins)
+
+def sdata_read_polygons(
+    zarr_dir:Path | str,
+    element: str,
+    ):
+    """
+    Read in polygon parquet file from spatialdata directory
+    """
+    zarr_dir = zarr_dir if isinstance(zarr_dir, Path) else Path(zarr_dir)
+    polygon_path = zarr_dir / "shapes" / element / "shapes.parquet"
+    return gpd.read_parquet(polygon_path) 

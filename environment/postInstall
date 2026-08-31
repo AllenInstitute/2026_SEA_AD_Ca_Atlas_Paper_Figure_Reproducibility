@@ -51,5 +51,7 @@ code-server --disable-telemetry --extensions-dir $CODE_EXTENSIONS_DIR --install-
 code-server --disable-telemetry --extensions-dir $CODE_EXTENSIONS_DIR --install-extension charliermarsh.ruff
 # # autodocstring extension
 # code-server --disable-telemetry --extensions-dir $CODE_EXTENSIONS_DIR --install-extension njpwerner.autodocstring
-
+# VSCode vim
+code-server --disable-telemetry --extensions-dir $CODE_EXTENSIONS_DIR --install-extension  vscodevim.vim
+code-server --disable-telemetry --extensions-dir $CODE_EXTENSIONS_DIR --install-extension anthropic.claude-code
 # NB: No longer need to move the .vscode folder into the capsule (not compatible with GitHub Copilot download)

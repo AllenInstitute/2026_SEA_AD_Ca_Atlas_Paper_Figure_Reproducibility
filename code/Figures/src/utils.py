@@ -1,9 +1,11 @@
 from h5py import File
 from anndata.io import read_elem
 from spatialdata import get_centroids
+from spatialdata.transformations import get_transformation
 import pandas as pd
 import numpy as np
 import geopandas as gpd
+import matplotlib.pyplot as plt
 
 def crop_cell(sdata, element_key, element_cell_index, bounding_box_size = 250, coordinate_system = 'global'):
     centroids_df = get_centroids(sdata[element_key]).compute()
@@ -15,7 +17,7 @@ def crop_cell(sdata, element_key, element_cell_index, bounding_box_size = 250, c
     return sdata
 
 def get_shape_transform(sdata, elem):
-    shape_transform = get_transformation(sdata_sample[elem]).to_affine_matrix(input_axes = ("x", "y"), output_axes = ("x", "y"))
+    shape_transform = get_transformation(sdata[elem]).to_affine_matrix(input_axes = ("x", "y"), output_axes = ("x", "y"))
     return np.concat([shape_transform[:-1, :-1].flatten(), shape_transform[:-1, -1].flatten()])
     
 def read_obs(path):
@@ -119,3 +121,52 @@ def bin_distances(
     bins = np.arange(0, np.ceil(distances.max() / bin_size) * bin_size, bin_size)
     return (np.digitize(distances, bins) - 1) * bin_size
 
+def save_figure(fig, filename, dpi=300, formats=('svg', 'pdf'), 
+                 transparent=False, pad_inches=0.05, tight=True):
+    """
+    Save a matplotlib figure in publication-quality format(s).
+
+    Parameters
+    ----------
+    fig : matplotlib.figure.Figure
+        The figure to save.
+    filename : str
+        Output filename WITHOUT extension (extension is added per format).
+    dpi : int
+        Resolution for raster formats (png, jpg). Ignored by vector formats
+        like svg/pdf/eps, but kept for consistency and text-as-vector fallback.
+    formats : tuple of str
+        File formats to export, e.g. ('svg', 'pdf', 'png').
+    transparent : bool
+        If True, background is transparent (good for slides/posters).
+    pad_inches : float
+        Padding around the figure when using bbox_inches='tight'.
+    tight : bool
+        If True, uses bbox_inches='tight' to trim excess whitespace.
+
+    Notes
+    -----
+    - SVG/PDF/EPS are vector formats: infinitely scalable, ideal for
+      journals and figure editing (e.g. in Illustrator/Inkscape).
+    - Fonts are kept as editable text (not converted to paths) via the
+      rcParams settings below, which is important for SVG editability
+      and searchability in PDFs.
+    """
+    # Ensure text stays as real text (not outlines) in vector output
+    plt.rcParams['svg.fonttype'] = 'none'   # keeps text editable in SVG
+    plt.rcParams['pdf.fonttype'] = 42       # TrueType fonts in PDF (editable)
+    plt.rcParams['ps.fonttype'] = 42
+
+    bbox = 'tight' if tight else None
+
+    for fmt in formats:
+        out_path = f"{filename}.{fmt}"
+        fig.savefig(
+            out_path,
+            format=fmt,
+            dpi=dpi,
+            transparent=transparent,
+            bbox_inches=bbox,
+            pad_inches=pad_inches,
+        )
+        print(f"Saved: {out_path}")

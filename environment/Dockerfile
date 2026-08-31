@@ -24,8 +24,8 @@ RUN pip install -U --no-cache-dir \
     igraph==1.0.0 \
     rapids-singlecell==0.13.5 \
     scanpy==1.12 \
-    spatialdata==0.6.1 \
-    spatialdata-plot==0.2.13
+    spatialdata==0.7.3 \
+    spatialdata-plot==0.4.0
 
 ADD "https://github.com/coder/code-server/releases/download/v4.100.3/code-server-4.100.3-linux-amd64.tar.gz" /.code-server/code-server.tar.gz
 	
